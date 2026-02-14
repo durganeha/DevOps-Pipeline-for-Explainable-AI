@@ -27,13 +27,14 @@ jobs:
         run: python src/models/train.py
 
       - name: Run Fairness Validation
-        run: python src/fairness/fairness_check.py
+        run: python src/fairness_check.py
 
       - name: Run Explainability (SHAP)
         run: python src/explainability/shap_analysis.py
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
+
         with:
           name: xai-artifacts
           path: artifacts/
