@@ -5,7 +5,10 @@ import numpy as np
 import pickle
 import matplotlib.pyplot as plt
 import shap
+
 import src.fairness_check as fairness_check
+
+import src.fairness as fairness_check
 
 # --- Page Configuration ---
 st.set_page_config(page_title="Judicial AI Audit Pipeline", page_icon="⚖️", layout="wide")
