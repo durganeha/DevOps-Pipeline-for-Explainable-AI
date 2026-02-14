@@ -2,13 +2,11 @@ import streamlit as st
 import time
 import pandas as pd
 import numpy as np
-import pickle
+import joblib
 import matplotlib.pyplot as plt
 import shap
 
 import src.fairness_check as fairness_check
-
-import src.fairness as fairness_check
 
 # --- Page Configuration ---
 st.set_page_config(page_title="Judicial AI Audit Pipeline", page_icon="⚖️", layout="wide")
@@ -39,10 +37,12 @@ with st.sidebar:
 if uploaded_file is None:
     st.info("👋 Please upload a model artifact to begin.")
 else:
-    data = pickle.load(uploaded_file)
+    data = joblib.load(uploaded_file)
     model = data['model']
     scaler = data['scaler']
-    X_test, y_true = data['test_data']
+    X_test = data["X_test"]
+    y_true = data["y_test"]
+
     feature_names = data['feature_names']
 
     if st.button("▶️ EXECUTE PIPELINE"):
