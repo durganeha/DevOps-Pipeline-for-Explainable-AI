@@ -16,7 +16,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: "3.11"
 
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV
@@ -26,14 +26,17 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Show Repository Structure
+        run: ls -R
+
       - name: Train Model
-        run: python train.py
+        run: python src/models/train.py
 
       - name: Run Fairness Validation
-        run: python fairness_check.py
+        run: python src/fairness_check.py
 
       - name: Run Explainability
-        run: python shap_analysis.py
+        run: python src/shap_analysis.py
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
