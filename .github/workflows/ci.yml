@@ -36,7 +36,7 @@ jobs:
         run: python src/fairness_check.py
 
       - name: Run Explainability
-        run: python src/shap_analysis.py
+        run: python src/explainability/shap_analysis.py
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
