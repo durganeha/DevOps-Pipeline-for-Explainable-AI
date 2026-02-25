@@ -18,23 +18,25 @@ jobs:
         with:
           python-version: "3.10"
 
+      - name: Set PYTHONPATH
+        run: echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV
+
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Train Model
-        run: python src/models/train.py
+        run: python train.py
 
       - name: Run Fairness Validation
-        run: python src/fairness_check.py
+        run: python fairness_check.py
 
-      - name: Run Explainability (SHAP)
-        run: python src/explainability/shap_analysis.py
+      - name: Run Explainability
+        run: python shap_analysis.py
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
-
         with:
           name: xai-artifacts
           path: artifacts/
