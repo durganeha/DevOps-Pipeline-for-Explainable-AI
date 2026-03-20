@@ -5,6 +5,8 @@ import numpy as np
 import joblib
 import matplotlib.pyplot as plt
 import shap
+import os
+port = int(os.environ.get("PORT", 8501))
 
 import src.fairness_check as fairness_check
 
